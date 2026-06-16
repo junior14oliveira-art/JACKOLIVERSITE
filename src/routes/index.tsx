@@ -23,17 +23,21 @@ import productGamer from "@/assets/product-laptop-gamer.jpg";
 import productCorp from "@/assets/product-laptop-corp.jpg";
 import productDesktop from "@/assets/product-desktop.jpg";
 import productMonitor from "@/assets/product-monitor.jpg";
+import dellXps from "@/assets/product-dell-xps.jpg";
+import dellDesktop from "@/assets/product-dell-desktop.jpg";
+import dellAlienware from "@/assets/product-dell-alienware.jpg";
+import dellMonitor from "@/assets/product-dell-monitor.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "TecnoBlue — Notebooks, Desktops e Hardware com o melhor preço" },
+      { title: "4M&C INFORMATICA — Notebooks, Desktops e Hardware com o melhor preço" },
       {
         name: "description",
         content:
           "Loja de informática especializada em notebooks gamers, corporativos, desktops montados e hardware. Frete grátis, garantia estendida e parcelamento em até 12x.",
       },
-      { property: "og:title", content: "TecnoBlue — Tecnologia que acelera você" },
+      { property: "og:title", content: "4M&C INFORMATICA — Tecnologia que acelera você" },
       {
         property: "og:description",
         content: "Notebooks, desktops, hardware e periféricos com preços imbatíveis.",
