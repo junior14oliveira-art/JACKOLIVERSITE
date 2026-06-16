@@ -76,14 +76,50 @@ const products: Product[] = [
     installments: "10x de R$ 489,90 sem juros",
     badge: "-22%",
   },
-  {
-    name: "Desktop Gamer TecnoBlue Storm RGB",
+    {
+    name: "Desktop Gamer 4M&C Storm RGB",
     image: productDesktop,
     tags: ["Ryzen 7 7700", "32GB DDR5", "SSD 1TB NVMe", "RTX 4060 Ti"],
     oldPrice: "R$ 11.290",
     price: "R$ 8.499",
     installments: "12x de R$ 708,25 sem juros",
     badge: "Lançamento",
+  },
+  {
+    name: "Notebook Dell XPS 15 Intel Core i7",
+    image: dellXps,
+    tags: ["Intel Core i7-13700H", "16GB RAM", "SSD 1TB", "RTX 4050"],
+    oldPrice: "R$ 14.999",
+    price: "R$ 11.499",
+    installments: "12x de R$ 958,25 sem juros",
+    badge: "Dell",
+  },
+  {
+    name: "Desktop Dell Inspiron Compact i5",
+    image: dellDesktop,
+    tags: ["Intel Core i5-13400", "16GB RAM", "SSD 512GB", "Wi-Fi 6"],
+    oldPrice: "R$ 5.299",
+    price: "R$ 3.899",
+    installments: "10x de R$ 389,90 sem juros",
+    badge: "Dell",
+  },
+  {
+    name: "Notebook Gamer Dell Alienware m16",
+    image: dellAlienware,
+    tags: ["Intel Core i9-13900HX", "32GB RAM", "SSD 2TB", "RTX 4080"],
+    oldPrice: "R$ 24.999",
+    price: "R$ 19.799",
+    installments: "12x de R$ 1.649,92 sem juros",
+    badge: "Top Dell",
+  },
+  {
+    name: 'Monitor Dell UltraSharp 27" 4K USB-C',
+    image: dellMonitor,
+    tags: ["27 polegadas", "4K UHD", "USB-C", "99% sRGB"],
+    oldPrice: "R$ 4.299",
+    price: "R$ 3.199",
+    installments: "10x de R$ 319,90 sem juros",
+    badge: "Dell",
   },
   {
     name: 'Monitor Gamer Curvo 27" 165Hz QHD',
@@ -495,7 +531,7 @@ function Footer() {
               <Cpu className="h-5 w-5 text-white" />
             </div>
             <span className="text-xl font-extrabold text-white">
-              Tecno<span className="text-cyan">Blue</span>
+              4M&C <span className="text-cyan">INFORMATICA</span>
             </span>
           </div>
           <p className="mt-4 text-sm">
@@ -517,7 +553,7 @@ function Footer() {
           <h4 className="text-sm font-bold uppercase tracking-wider text-white">Contato</h4>
           <ul className="mt-4 space-y-2 text-sm">
             <li>📞 (11) 4000-1234</li>
-            <li>✉️ ola@tecnoblue.com.br</li>
+            <li>✉️ contato@4emecinformatica.com.br</li>
             <li>🕒 Seg a Sex · 9h às 18h</li>
           </ul>
 
@@ -551,7 +587,7 @@ function Footer() {
 
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-white/60 sm:flex-row">
-          <p>© {new Date().getFullYear()} TecnoBlue Informática Ltda. CNPJ 00.000.000/0001-00</p>
+          <p>© {new Date().getFullYear()} 4M&C INFORMATICA Ltda. CNPJ 00.000.000/0001-00</p>
           <p>Todos os direitos reservados.</p>
         </div>
       </div>
