@@ -131,7 +131,7 @@ function TopBar() {
         <div className="flex items-center gap-4">
           <a href="#" className="hover:text-cyan">Atendimento</a>
           <a href="#" className="hover:text-cyan">Rastrear pedido</a>
-          <a href="#" className="hover:text-cyan">Vender no TecnoBlue</a>
+          <a href="#" className="hover:text-cyan">Vender no 4M&C</a>
         </div>
       </div>
     </div>
@@ -147,7 +147,7 @@ function Header() {
             <Cpu className="h-5 w-5 text-white" />
           </div>
           <span className="text-xl font-extrabold tracking-tight">
-            Tecno<span className="text-cyan">Blue</span>
+            4M&C <span className="text-cyan">INFORMATICA</span>
           </span>
         </a>
 
