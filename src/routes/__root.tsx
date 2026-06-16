@@ -85,6 +85,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
+      { name: "twitter:title", content: "4M&C INFORMATICA" },
+      { name: "twitter:description", content: "Loja de informática especializada em notebooks, desktops e hardware." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f7dae7c6-2499-4bc4-b592-7a124ad9e988/id-preview-d9ea2506--c9f5fe23-6842-43ff-8a4a-939fc2cbbf25.lovable.app-1781568444776.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f7dae7c6-2499-4bc4-b592-7a124ad9e988/id-preview-d9ea2506--c9f5fe23-6842-43ff-8a4a-939fc2cbbf25.lovable.app-1781568444776.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
