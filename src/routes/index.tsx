@@ -357,10 +357,13 @@ function Faq() {
 
 const navItems = [
   { label: "Início", href: "#inicio" },
+  { label: "Depilação", href: "#depilacao" },
   { label: "Serviços", href: "#servicos" },
   { label: "Sobre", href: "#sobre" },
+  { label: "Dúvidas", href: "#faq" },
   { label: "Contato", href: "#contato" },
 ];
+
 
 function Logo({ light = false }: { light?: boolean }) {
   return (
@@ -494,15 +497,17 @@ function Hero() {
       <div className="mx-auto max-w-6xl px-4 py-24 md:py-36">
         <div className="max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-background/30 bg-background/15 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-background backdrop-blur">
-            <Sparkles className="h-3.5 w-3.5" /> Estética & Bem Estar
+            <Sparkles className="h-3.5 w-3.5" /> Jardim Mikail · Guarulhos — SP
           </span>
           <h1 className="mt-6 font-display text-4xl leading-[1.1] text-background md:text-6xl">
-            Realce a sua beleza natural e renove seu bem-estar.
+            Depilação em Guarulhos, no Jardim Mikail
           </h1>
           <p className="mt-6 max-w-xl text-base font-light leading-relaxed text-background/85 md:text-lg">
-            Tratamentos estéticos faciais e corporais personalizados com Jacqueline
-            Pereira.
+            Depilação com cera, estética facial e corporal com Jacqueline Pereira: hora
+            marcada, material descartável e cuidado humanizado para realçar a sua beleza
+            natural.
           </p>
+
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href={WHATSAPP}
@@ -794,9 +799,12 @@ function LocationContact() {
                 <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-purple" />
                 <div className="min-w-0">
                   <p className="font-display text-lg text-purple-deep">Endereço</p>
-                  <p className="mt-1 text-sm font-light text-muted-foreground">
-                    Jacqueline Pereira Estética & Bem Estar — Guarulhos, São Paulo.
-                  </p>
+                  <address className="mt-1 text-sm font-light not-italic text-muted-foreground">
+                    Jacqueline Pereira Estética &amp; Bem Estar
+                    <br />
+                    Jardim Mikail — Guarulhos, São Paulo (SP)
+                  </address>
+
                   <a
                     href={MAPS_LINK}
                     target="_blank"
@@ -863,9 +871,10 @@ function Footer() {
         <div>
           <Logo light />
           <p className="mt-5 max-w-xs text-sm font-light leading-relaxed">
-            Estética facial e corporal com cuidado humanizado, em um ambiente pensado
-            para o seu relaxamento.
+            Depilação, estética facial e corporal no Jardim Mikail, Guarulhos — SP.
+            Atendimento humanizado, com hora marcada e material descartável.
           </p>
+
         </div>
 
         <div>
