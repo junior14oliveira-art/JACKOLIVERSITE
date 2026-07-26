@@ -77,18 +77,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "4M&C INFORMATICA" },
-      { name: "description", content: "Loja de informática especializada em notebooks, desktops e hardware." },
-      { name: "author", content: "4M&C INFORMATICA" },
-      { property: "og:title", content: "4M&C INFORMATICA" },
-      { property: "og:description", content: "Loja de informática especializada em notebooks, desktops e hardware." },
+      { title: "Jacqueline Pereira Estética & Bem Estar" },
+      {
+        name: "description",
+        content:
+          "Clínica de estética e bem-estar: limpeza de pele, massagem relaxante, drenagem linfática e rejuvenescimento facial.",
+      },
+      { name: "author", content: "Jacqueline Pereira Estética & Bem Estar" },
+      { property: "og:title", content: "Jacqueline Pereira Estética & Bem Estar" },
+      {
+        property: "og:description",
+        content: "Tratamentos estéticos faciais e corporais personalizados.",
+      },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "4M&C INFORMATICA" },
-      { name: "twitter:description", content: "Loja de informática especializada em notebooks, desktops e hardware." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f7dae7c6-2499-4bc4-b592-7a124ad9e988/id-preview-d9ea2506--c9f5fe23-6842-43ff-8a4a-939fc2cbbf25.lovable.app-1781568444776.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f7dae7c6-2499-4bc4-b592-7a124ad9e988/id-preview-d9ea2506--c9f5fe23-6842-43ff-8a4a-939fc2cbbf25.lovable.app-1781568444776.png" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Jacqueline Pereira Estética & Bem Estar" },
+      {
+        name: "twitter:description",
+        content: "Tratamentos estéticos faciais e corporais personalizados.",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -96,10 +103,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700;900&display=swap",
       },
     ],
   }),
+
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
