@@ -28,7 +28,7 @@ const MAPS_LINK = "https://maps.app.goo.gl/gXih27JjjynPd1jPA";
 const MAPS_EMBED =
   "https://www.google.com/maps?q=Jacqueline+Pereira+Est%C3%A9tica+%26+Bem+Estar&ll=-23.4078149,-46.4999985&z=17&output=embed";
 
-const SITE = "https://nexus-nurture-shop.lovable.app";
+const SITE = "https://seudominio.com.br";
 
 export const faqs = [
   {
