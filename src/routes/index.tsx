@@ -28,42 +28,186 @@ const MAPS_LINK = "https://maps.app.goo.gl/gXih27JjjynPd1jPA";
 const MAPS_EMBED =
   "https://www.google.com/maps?q=Jacqueline+Pereira+Est%C3%A9tica+%26+Bem+Estar&ll=-23.4078149,-46.4999985&z=17&output=embed";
 
+const SITE = "https://nexus-nurture-shop.lovable.app";
+
+export const faqs = [
+  {
+    q: "Onde fica o estúdio de depilação em Guarulhos?",
+    a: "Atendemos no bairro Jardim Mikail, em Guarulhos (SP), com fácil acesso para os bairros vizinhos como Jardim Presidente Dutra, Cumbica e Bonsucesso. O agendamento é feito pelo WhatsApp.",
+  },
+  {
+    q: "Quais tipos de depilação vocês fazem?",
+    a: "Realizamos depilação com cera quente, cera morna (roll-on descartável), depilação íntima (virilha cavada e completa), axilas, pernas, buço, rosto e depilação masculina — sempre com material descartável.",
+  },
+  {
+    q: "Quanto tempo dura a depilação com cera?",
+    a: "Em média de 3 a 4 semanas, dependendo do ciclo de crescimento dos pelos. Com sessões regulares, os pelos crescem mais finos e o intervalo entre as depilações aumenta.",
+  },
+  {
+    q: "Qual o tamanho ideal do pelo para depilar?",
+    a: "Cerca de 5 mm (aproximadamente 15 dias sem lâmina). Assim a cera adere bem ao pelo e a remoção fica mais eficiente e menos dolorida.",
+  },
+  {
+    q: "A depilação com cera dói muito?",
+    a: "Usamos técnicas de aplicação e produtos calmantes que reduzem bastante o desconforto. A partir da segunda sessão a sensibilidade costuma diminuir de forma significativa.",
+  },
+  {
+    q: "Precisa agendar? Vocês atendem no mesmo dia?",
+    a: "Trabalhamos com hora marcada para garantir higiene e atendimento exclusivo. Sempre que há horário livre, conseguimos encaixar no mesmo dia — basta chamar no WhatsApp.",
+  },
+];
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Jacqueline Pereira — Clínica de Estética e Bem Estar" },
+      {
+        title: "Depilação em Guarulhos — Jardim Mikail | Jacqueline Pereira Estética",
+      },
       {
         name: "description",
         content:
-          "Clínica de estética e bem-estar com tratamentos faciais e corporais personalizados: limpeza de pele, drenagem linfática, massagem relaxante e rejuvenescimento. Agende sua avaliação.",
+          "Depilação com cera em Guarulhos, no bairro Jardim Mikail: virilha, axilas, pernas, buço e depilação masculina. Estética e bem-estar com hora marcada. Agende pelo WhatsApp.",
       },
       {
+        name: "keywords",
+        content:
+          "depilação Guarulhos, depilação Jardim Mikail, epilação Guarulhos, depilação com cera Guarulhos, depilação íntima Guarulhos, depilação a laser Guarulhos, estética Guarulhos",
+      },
+      { name: "geo.region", content: "BR-SP" },
+      { name: "geo.placename", content: "Guarulhos, Jardim Mikail" },
+      { name: "geo.position", content: "-23.4078149;-46.4999985" },
+      { name: "ICBM", content: "-23.4078149, -46.4999985" },
+      {
         property: "og:title",
-        content: "Jacqueline Pereira — Estética & Bem Estar",
+        content: "Depilação em Guarulhos — Jardim Mikail | Jacqueline Pereira Estética",
       },
       {
         property: "og:description",
         content:
-          "Realce a sua beleza natural e renove seu bem-estar com tratamentos estéticos personalizados.",
+          "Depilação com cera, estética facial e corporal no Jardim Mikail, Guarulhos. Atendimento com hora marcada e material descartável.",
       },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://nexus-nurture-shop.lovable.app/" },
+      { property: "og:locale", content: "pt_BR" },
+      { property: "og:url", content: `${SITE}/` },
       { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "twitter:title",
+        content: "Depilação em Guarulhos — Jardim Mikail | Jacqueline Pereira Estética",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Depilação com cera e tratamentos estéticos no Jardim Mikail, Guarulhos. Agende pelo WhatsApp.",
+      },
     ],
-    links: [{ rel: "canonical", href: "https://nexus-nurture-shop.lovable.app/" }],
+    links: [{ rel: "canonical", href: `${SITE}/` }],
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "BeautySalon",
+          "@type": "HealthAndBeautyBusiness",
+          "@id": `${SITE}/#negocio`,
           name: "Jacqueline Pereira Estética & Bem Estar",
+          alternateName: "Depilação Jardim Mikail — Jacqueline Pereira",
           description:
-            "Clínica de estética e bem-estar com tratamentos faciais e corporais personalizados.",
-          image: "https://nexus-nurture-shop.lovable.app/",
-          url: "https://nexus-nurture-shop.lovable.app/",
-          geo: { "@type": "GeoCoordinates", latitude: -23.4078149, longitude: -46.4999985 },
-          openingHours: "Mo-Fr 09:00-19:00, Sa 09:00-15:00",
+            "Estúdio de depilação e estética em Guarulhos, no bairro Jardim Mikail: depilação com cera, depilação íntima, tratamentos faciais e corporais.",
+          url: `${SITE}/`,
+          telephone: "+55 11 99999-9999",
+          priceRange: "$$",
+          currenciesAccepted: "BRL",
+          paymentAccepted: "Dinheiro, Pix, Cartão de crédito, Cartão de débito",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: "Jardim Mikail",
+            addressLocality: "Guarulhos",
+            addressRegion: "SP",
+            postalCode: "07170-000",
+            addressCountry: "BR",
+          },
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: -23.4078149,
+            longitude: -46.4999985,
+          },
+          hasMap: MAPS_LINK,
+          areaServed: [
+            { "@type": "City", name: "Guarulhos" },
+            { "@type": "Place", name: "Jardim Mikail, Guarulhos" },
+            { "@type": "Place", name: "Jardim Presidente Dutra, Guarulhos" },
+            { "@type": "Place", name: "Cumbica, Guarulhos" },
+            { "@type": "Place", name: "Bonsucesso, Guarulhos" },
+          ],
+          openingHoursSpecification: [
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+              opens: "09:00",
+              closes: "19:00",
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              dayOfWeek: "Saturday",
+              opens: "09:00",
+              closes: "15:00",
+            },
+          ],
+          sameAs: [INSTAGRAM, MAPS_LINK],
+          aggregateRating: {
+            "@type": "AggregateRating",
+            ratingValue: "5",
+            reviewCount: "4",
+          },
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Serviços de depilação e estética em Guarulhos",
+            itemListElement: [
+              "Depilação com cera quente",
+              "Depilação íntima (virilha cavada e completa)",
+              "Depilação de axilas e pernas",
+              "Depilação de buço e rosto",
+              "Depilação masculina",
+              "Limpeza de pele",
+              "Drenagem linfática",
+              "Massagem relaxante",
+            ].map((s) => ({
+              "@type": "Offer",
+              itemOffered: { "@type": "Service", name: s, areaServed: "Guarulhos" },
+            })),
+          },
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((f) => ({
+            "@type": "Question",
+            name: f.q,
+            acceptedAnswer: { "@type": "Answer", text: f.a },
+          })),
+        }),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Início",
+              item: `${SITE}/`,
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: "Depilação em Guarulhos — Jardim Mikail",
+              item: `${SITE}/#depilacao`,
+            },
+          ],
         }),
       },
     ],
@@ -77,9 +221,11 @@ function Landing() {
       <Header />
       <main>
         <Hero />
+        <Waxing />
         <Services />
         <About />
         <Testimonials />
+        <Faq />
         <LocationContact />
       </main>
       <Footer />
@@ -88,12 +234,136 @@ function Landing() {
   );
 }
 
+const waxingServices = [
+  {
+    title: "Depilação com cera quente",
+    text: "Cera aquecida na temperatura ideal, que abre os poros e remove o pelo pela raiz com menos desconforto.",
+  },
+  {
+    title: "Depilação íntima",
+    text: "Virilha simples, cavada ou completa, feita com privacidade, técnica delicada e material 100% descartável.",
+  },
+  {
+    title: "Axilas e pernas",
+    text: "Pele lisa por semanas, com produtos calmantes que reduzem vermelhidão e evitam pelos encravados.",
+  },
+  {
+    title: "Buço, rosto e sobrancelha",
+    text: "Design e remoção precisa de pelos faciais, respeitando o formato natural do seu rosto.",
+  },
+  {
+    title: "Depilação masculina",
+    text: "Peito, costas, abdômen e pernas com atendimento reservado e sem julgamentos.",
+  },
+  {
+    title: "Pacotes mensais",
+    text: "Sessões programadas com valores especiais para manter a pele sempre lisa o ano todo.",
+  },
+];
+
+function Waxing() {
+  return (
+    <section id="depilacao" className="relative overflow-hidden bg-ice py-24">
+      <img
+        src={butterfly}
+        alt=""
+        loading="lazy"
+        width={700}
+        height={700}
+        className="animate-float pointer-events-none absolute -left-8 top-16 h-28 w-28 opacity-20"
+      />
+      <div className="mx-auto max-w-6xl px-4">
+        <header className="mx-auto max-w-3xl text-center">
+          <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-purple">
+            Especialidade da casa
+          </span>
+          <h2 className="mt-4 font-display text-3xl text-purple-deep md:text-4xl">
+            Depilação em Guarulhos — Jardim Mikail
+          </h2>
+          <p className="mt-5 text-sm font-light leading-relaxed text-muted-foreground md:text-base">
+            Somos referência em <strong className="font-bold text-purple-deep">depilação
+            (epilação) com cera no bairro Jardim Mikail, em Guarulhos — SP</strong>. Cada
+            sessão é feita com hora marcada, material descartável e produtos hipoalergênicos,
+            garantindo higiene, conforto e uma pele lisa por muito mais tempo. Atendemos
+            também clientes de Jardim Presidente Dutra, Cumbica, Bonsucesso e demais regiões
+            de Guarulhos.
+          </p>
+        </header>
+
+        <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {waxingServices.map((s) => (
+            <li
+              key={s.title}
+              className="glass rounded-3xl p-7 shadow-[var(--shadow-card)] transition duration-300 hover:-translate-y-1.5"
+            >
+              <h3 className="font-display text-xl text-purple-deep">{s.title}</h3>
+              <p className="mt-3 text-sm font-light leading-relaxed text-muted-foreground">
+                {s.text}
+              </p>
+            </li>
+          ))}
+        </ul>
+
+        <div className="mt-12 flex flex-wrap items-center justify-center gap-4 text-center">
+          <a
+            href={WHATSAPP}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-purple px-7 py-4 text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:-translate-y-0.5 hover:bg-purple-deep"
+          >
+            <MessageCircle className="h-5 w-5" /> Agendar depilação em Guarulhos
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Faq() {
+  return (
+    <section id="faq" className="bg-beige py-24">
+      <div className="mx-auto max-w-4xl px-4">
+        <header className="text-center">
+          <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-purple">
+            Dúvidas frequentes
+          </span>
+          <h2 className="mt-4 font-display text-3xl text-purple-deep md:text-4xl">
+            Tudo sobre depilação em Guarulhos
+          </h2>
+        </header>
+
+        <div className="mt-12 space-y-4">
+          {faqs.map((f) => (
+            <details
+              key={f.q}
+              className="glass group rounded-2xl p-6 shadow-[var(--shadow-card)]"
+            >
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-display text-lg text-purple-deep">
+                {f.q}
+                <ChevronRight className="h-5 w-5 shrink-0 text-purple transition group-open:rotate-90" />
+              </summary>
+              <p className="mt-4 text-sm font-light leading-relaxed text-muted-foreground">
+                {f.a}
+              </p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+
+
 const navItems = [
   { label: "Início", href: "#inicio" },
+  { label: "Depilação", href: "#depilacao" },
   { label: "Serviços", href: "#servicos" },
   { label: "Sobre", href: "#sobre" },
+  { label: "Dúvidas", href: "#faq" },
   { label: "Contato", href: "#contato" },
 ];
+
 
 function Logo({ light = false }: { light?: boolean }) {
   return (
@@ -227,15 +497,17 @@ function Hero() {
       <div className="mx-auto max-w-6xl px-4 py-24 md:py-36">
         <div className="max-w-2xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-background/30 bg-background/15 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-background backdrop-blur">
-            <Sparkles className="h-3.5 w-3.5" /> Estética & Bem Estar
+            <Sparkles className="h-3.5 w-3.5" /> Jardim Mikail · Guarulhos — SP
           </span>
           <h1 className="mt-6 font-display text-4xl leading-[1.1] text-background md:text-6xl">
-            Realce a sua beleza natural e renove seu bem-estar.
+            Depilação em Guarulhos, no Jardim Mikail
           </h1>
           <p className="mt-6 max-w-xl text-base font-light leading-relaxed text-background/85 md:text-lg">
-            Tratamentos estéticos faciais e corporais personalizados com Jacqueline
-            Pereira.
+            Depilação com cera, estética facial e corporal com Jacqueline Pereira: hora
+            marcada, material descartável e cuidado humanizado para realçar a sua beleza
+            natural.
           </p>
+
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a
               href={WHATSAPP}
@@ -527,9 +799,12 @@ function LocationContact() {
                 <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-purple" />
                 <div className="min-w-0">
                   <p className="font-display text-lg text-purple-deep">Endereço</p>
-                  <p className="mt-1 text-sm font-light text-muted-foreground">
-                    Jacqueline Pereira Estética & Bem Estar — Guarulhos, São Paulo.
-                  </p>
+                  <address className="mt-1 text-sm font-light not-italic text-muted-foreground">
+                    Jacqueline Pereira Estética &amp; Bem Estar
+                    <br />
+                    Jardim Mikail — Guarulhos, São Paulo (SP)
+                  </address>
+
                   <a
                     href={MAPS_LINK}
                     target="_blank"
@@ -596,9 +871,10 @@ function Footer() {
         <div>
           <Logo light />
           <p className="mt-5 max-w-xs text-sm font-light leading-relaxed">
-            Estética facial e corporal com cuidado humanizado, em um ambiente pensado
-            para o seu relaxamento.
+            Depilação, estética facial e corporal no Jardim Mikail, Guarulhos — SP.
+            Atendimento humanizado, com hora marcada e material descartável.
           </p>
+
         </div>
 
         <div>
