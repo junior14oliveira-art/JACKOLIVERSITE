@@ -1,433 +1,343 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useState } from "react";
 import {
-  Search,
-  User,
-  Heart,
-  ShoppingCart,
-  Menu,
-  Laptop,
-  Gamepad2,
-  Monitor,
-  Cpu,
-  Keyboard,
-  Truck,
-  ShieldCheck,
-  CreditCard,
-  Headphones,
+  Sparkles,
+  Flower2,
+  HandHeart,
+  Waves,
+  Droplets,
+  Gem,
   Star,
-  MessageCircle,
+  MapPin,
+  Clock,
+  Instagram,
+  Phone,
+  Menu,
+  X,
+  ChevronLeft,
   ChevronRight,
+  MessageCircle,
 } from "lucide-react";
-import heroLaptop from "@/assets/hero-laptop.png";
-import productGamer from "@/assets/product-laptop-gamer.jpg";
-import productCorp from "@/assets/product-laptop-corp.jpg";
-import productDesktop from "@/assets/product-desktop.jpg";
-import productMonitor from "@/assets/product-monitor.jpg";
-import dellXps from "@/assets/product-dell-xps.jpg";
-import dellDesktop from "@/assets/product-dell-desktop.jpg";
-import dellAlienware from "@/assets/product-dell-alienware.jpg";
-import dellMonitor from "@/assets/product-dell-monitor.jpg";
+import heroSpa from "@/assets/hero-spa.jpg";
+import jacquelinePhoto from "@/assets/jacqueline.jpg";
+import butterfly from "@/assets/butterfly.png";
+
+const WHATSAPP = "https://wa.me/5511999999999?text=Ol%C3%A1%20Jacqueline!%20Gostaria%20de%20agendar%20uma%20avalia%C3%A7%C3%A3o.";
+const INSTAGRAM = "https://instagram.com/";
+const MAPS_LINK = "https://maps.app.goo.gl/gXih27JjjynPd1jPA";
+const MAPS_EMBED =
+  "https://www.google.com/maps?q=Jacqueline+Pereira+Est%C3%A9tica+%26+Bem+Estar&ll=-23.4078149,-46.4999985&z=17&output=embed";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "4M&C INFORMATICA — Notebooks, Desktops e Hardware com o melhor preço" },
+      { title: "Jacqueline Pereira — Clínica de Estética e Bem Estar" },
       {
         name: "description",
         content:
-          "Loja de informática especializada em notebooks gamers, corporativos, desktops montados e hardware. Frete grátis, garantia estendida e parcelamento em até 12x.",
+          "Clínica de estética e bem-estar com tratamentos faciais e corporais personalizados: limpeza de pele, drenagem linfática, massagem relaxante e rejuvenescimento. Agende sua avaliação.",
       },
-      { property: "og:title", content: "4M&C INFORMATICA — Tecnologia que acelera você" },
+      {
+        property: "og:title",
+        content: "Jacqueline Pereira — Estética & Bem Estar",
+      },
       {
         property: "og:description",
-        content: "Notebooks, desktops, hardware e periféricos com preços imbatíveis.",
+        content:
+          "Realce a sua beleza natural e renove seu bem-estar com tratamentos estéticos personalizados.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://nexus-nurture-shop.lovable.app/" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+    links: [{ rel: "canonical", href: "https://nexus-nurture-shop.lovable.app/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BeautySalon",
+          name: "Jacqueline Pereira Estética & Bem Estar",
+          description:
+            "Clínica de estética e bem-estar com tratamentos faciais e corporais personalizados.",
+          image: "https://nexus-nurture-shop.lovable.app/",
+          url: "https://nexus-nurture-shop.lovable.app/",
+          geo: { "@type": "GeoCoordinates", latitude: -23.4078149, longitude: -46.4999985 },
+          openingHours: "Mo-Fr 09:00-19:00, Sa 09:00-15:00",
+        }),
       },
     ],
   }),
-  component: Home,
+  component: Landing,
 });
 
-type Product = {
-  name: string;
-  image: string;
-  tags: string[];
-  oldPrice: string;
-  price: string;
-  installments: string;
-  badge?: string;
-};
-
-const products: Product[] = [
-  {
-    name: "Notebook Gamer Predator X16 RTX 4070",
-    image: productGamer,
-    tags: ["Intel Core i7-13700H", "16GB RAM", "SSD 1TB", "RTX 4070"],
-    oldPrice: "R$ 12.499",
-    price: "R$ 9.799",
-    installments: "12x de R$ 816,58 sem juros",
-    badge: "-22%",
-  },
-  {
-    name: "Notebook Corporativo UltraBook Pro 14",
-    image: productCorp,
-    tags: ["Intel Core i5-1340P", "16GB RAM", "SSD 512GB", '14"'],
-    oldPrice: "R$ 6.299",
-    price: "R$ 4.899",
-    installments: "10x de R$ 489,90 sem juros",
-    badge: "-22%",
-  },
-    {
-    name: "Desktop Gamer 4M&C Storm RGB",
-    image: productDesktop,
-    tags: ["Ryzen 7 7700", "32GB DDR5", "SSD 1TB NVMe", "RTX 4060 Ti"],
-    oldPrice: "R$ 11.290",
-    price: "R$ 8.499",
-    installments: "12x de R$ 708,25 sem juros",
-    badge: "Lançamento",
-  },
-  {
-    name: "Notebook Dell XPS 15 Intel Core i7",
-    image: dellXps,
-    tags: ["Intel Core i7-13700H", "16GB RAM", "SSD 1TB", "RTX 4050"],
-    oldPrice: "R$ 14.999",
-    price: "R$ 11.499",
-    installments: "12x de R$ 958,25 sem juros",
-    badge: "Dell",
-  },
-  {
-    name: "Desktop Dell Inspiron Compact i5",
-    image: dellDesktop,
-    tags: ["Intel Core i5-13400", "16GB RAM", "SSD 512GB", "Wi-Fi 6"],
-    oldPrice: "R$ 5.299",
-    price: "R$ 3.899",
-    installments: "10x de R$ 389,90 sem juros",
-    badge: "Dell",
-  },
-  {
-    name: "Notebook Gamer Dell Alienware m16",
-    image: dellAlienware,
-    tags: ["Intel Core i9-13900HX", "32GB RAM", "SSD 2TB", "RTX 4080"],
-    oldPrice: "R$ 24.999",
-    price: "R$ 19.799",
-    installments: "12x de R$ 1.649,92 sem juros",
-    badge: "Top Dell",
-  },
-  {
-    name: 'Monitor Dell UltraSharp 27" 4K USB-C',
-    image: dellMonitor,
-    tags: ["27 polegadas", "4K UHD", "USB-C", "99% sRGB"],
-    oldPrice: "R$ 4.299",
-    price: "R$ 3.199",
-    installments: "10x de R$ 319,90 sem juros",
-    badge: "Dell",
-  },
-  {
-    name: 'Monitor Gamer Curvo 27" 165Hz QHD',
-    image: productMonitor,
-    tags: ["27 polegadas", "QHD 2K", "165Hz", "1ms"],
-    oldPrice: "R$ 2.499",
-    price: "R$ 1.699",
-    installments: "10x de R$ 169,90 sem juros",
-    badge: "-32%",
-  },
-];
-
-const categories = [
-  { name: "Notebooks Gamers", icon: Gamepad2, count: "+120 modelos" },
-  { name: "Notebooks Corporativos", icon: Laptop, count: "+80 modelos" },
-  { name: "Desktops Montados", icon: Monitor, count: "+60 modelos" },
-  { name: "Hardware", icon: Cpu, count: "+450 itens" },
-  { name: "Periféricos", icon: Keyboard, count: "+700 itens" },
-];
-
-function Home() {
+function Landing() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <TopBar />
+    <div className="min-h-screen bg-background font-sans text-foreground">
       <Header />
-      <NavBar />
-      <Hero />
-      <Trust />
-      <Categories />
-      <ProductShelf />
-      <RecentlyViewed />
+      <main>
+        <Hero />
+        <Services />
+        <About />
+        <Testimonials />
+        <LocationContact />
+      </main>
       <Footer />
-      <SupportFab />
+      <WhatsAppFab />
     </div>
   );
 }
 
-function TopBar() {
+const navItems = [
+  { label: "Início", href: "#inicio" },
+  { label: "Serviços", href: "#servicos" },
+  { label: "Sobre", href: "#sobre" },
+  { label: "Contato", href: "#contato" },
+];
+
+function Logo({ light = false }: { light?: boolean }) {
   return (
-    <div className="bg-navy-deep text-white/80 text-xs">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2">
-        <span className="hidden sm:inline">
-          Frete grátis acima de R$ 499 · Parcele em até 12x sem juros
+    <a href="#inicio" className="flex min-w-0 items-center gap-3">
+      <img
+        src={butterfly}
+        alt=""
+        width={700}
+        height={700}
+        className="h-10 w-10 shrink-0 object-contain"
+      />
+      <span className="min-w-0 leading-tight">
+        <span
+          className={`block truncate font-display text-lg tracking-wide ${
+            light ? "text-background" : "text-purple-deep"
+          }`}
+        >
+          Jacqueline Pereira
         </span>
-        <div className="flex items-center gap-4">
-          <a href="#" className="hover:text-cyan">Atendimento</a>
-          <a href="#" className="hover:text-cyan">Rastrear pedido</a>
-          <a href="#" className="hover:text-cyan">Vender no 4M&C</a>
-        </div>
-      </div>
-    </div>
+        <span
+          className={`block text-[10px] uppercase tracking-[0.28em] ${
+            light ? "text-background/70" : "text-muted-foreground"
+          }`}
+        >
+          Estética & Bem Estar
+        </span>
+      </span>
+    </a>
   );
 }
 
 function Header() {
+  const [open, setOpen] = useState(false);
   return (
-    <header className="bg-navy text-white">
-      <div className="mx-auto flex max-w-7xl items-center gap-4 px-4 py-4">
-        <a href="/" className="flex items-center gap-2 shrink-0">
-          <div className="grid h-10 w-10 place-items-center rounded-lg bg-gradient-to-br from-cyan to-cyan-bright shadow-[var(--shadow-glow)]">
-            <Cpu className="h-5 w-5 text-white" />
-          </div>
-          <span className="text-xl font-extrabold tracking-tight">
-            4M&C <span className="text-cyan">INFORMATICA</span>
-          </span>
-        </a>
-
-        <div className="hidden md:flex flex-1 mx-4">
-          <label htmlFor="search" className="sr-only">Buscar produtos</label>
-          <div className="flex w-full items-center rounded-full bg-white text-navy shadow-sm focus-within:ring-2 focus-within:ring-cyan">
-            <Search className="ml-4 h-4 w-4 text-muted-foreground" aria-hidden />
-            <input
-              id="search"
-              type="search"
-              placeholder="O que você procura? Ex: Notebook i7 16GB"
-              className="flex-1 bg-transparent px-3 py-3 text-sm outline-none placeholder:text-muted-foreground"
-            />
-            <button className="m-1 rounded-full bg-cyan px-5 py-2 text-sm font-semibold text-white transition hover:bg-cyan-bright">
-              Buscar
-            </button>
-          </div>
-        </div>
-
-        <div className="flex items-center gap-1 sm:gap-3">
-          <IconBtn icon={User} label="Minha Conta" />
-          <IconBtn icon={Heart} label="Favoritos" badge="3" />
-          <IconBtn icon={ShoppingCart} label="Carrinho" badge="2" highlight />
-        </div>
-      </div>
-
-      <div className="md:hidden px-4 pb-4">
-        <div className="flex w-full items-center rounded-full bg-white text-navy">
-          <Search className="ml-4 h-4 w-4 text-muted-foreground" />
-          <input
-            type="search"
-            placeholder="Buscar produtos..."
-            className="flex-1 bg-transparent px-3 py-2 text-sm outline-none"
-          />
-        </div>
-      </div>
-    </header>
-  );
-}
-
-function IconBtn({
-  icon: Icon,
-  label,
-  badge,
-  highlight,
-}: {
-  icon: typeof User;
-  label: string;
-  badge?: string;
-  highlight?: boolean;
-}) {
-  return (
-    <button
-      aria-label={label}
-      className={`relative flex items-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition hover:bg-white/10 ${
-        highlight ? "bg-white/5" : ""
-      }`}
-    >
-      <Icon className="h-5 w-5" />
-      <span className="hidden lg:inline">{label}</span>
-      {badge && (
-        <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-cyan px-1 text-[10px] font-bold text-white">
-          {badge}
-        </span>
-      )}
-    </button>
-  );
-}
-
-function NavBar() {
-  const items = [
-    "Notebooks",
-    "Desktops",
-    "Hardware",
-    "Periféricos",
-    "Monitores",
-    "Setup Gamer",
-    "Ofertas",
-  ];
-  return (
-    <nav className="border-b border-white/5 bg-navy-soft text-white">
-      <div className="mx-auto flex max-w-7xl items-center gap-1 overflow-x-auto px-4 py-2">
-        <button className="flex items-center gap-2 rounded-md bg-cyan px-3 py-1.5 text-sm font-semibold text-white">
-          <Menu className="h-4 w-4" /> Categorias
-        </button>
-        {items.map((i) => (
+    <header className="sticky top-0 z-40 glass border-b border-border/60">
+      <div className="mx-auto grid max-w-6xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 py-3 md:py-4">
+        <Logo />
+        <div className="flex items-center gap-6">
+          <nav className="hidden items-center gap-7 md:flex">
+            {navItems.map((i) => (
+              <a
+                key={i.href}
+                href={i.href}
+                className="text-sm font-medium text-muted-foreground transition-colors hover:text-purple"
+              >
+                {i.label}
+              </a>
+            ))}
+          </nav>
           <a
-            key={i}
-            href="#"
-            className="whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium text-white/80 transition hover:bg-white/10 hover:text-white"
+            href={WHATSAPP}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden rounded-full bg-purple px-5 py-2.5 text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:-translate-y-0.5 hover:bg-purple-deep sm:inline-flex"
           >
-            {i}
+            Agende sua Avaliação
           </a>
-        ))}
+          <button
+            aria-label={open ? "Fechar menu" : "Abrir menu"}
+            onClick={() => setOpen((v) => !v)}
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border text-purple-deep md:hidden"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
-    </nav>
+
+      {open && (
+        <nav className="border-t border-border/60 bg-card/95 px-4 py-4 md:hidden">
+          <ul className="space-y-1">
+            {navItems.map((i) => (
+              <li key={i.href}>
+                <a
+                  href={i.href}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-xl px-3 py-2.5 text-sm font-medium text-foreground transition hover:bg-lilac"
+                >
+                  {i.label}
+                </a>
+              </li>
+            ))}
+            <li>
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 block rounded-full bg-purple px-4 py-3 text-center text-sm font-bold text-primary-foreground"
+              >
+                Agende sua Avaliação
+              </a>
+            </li>
+          </ul>
+        </nav>
+      )}
+    </header>
   );
 }
 
 function Hero() {
   return (
-    <section
-      className="relative overflow-hidden"
-      style={{ background: "var(--gradient-hero)" }}
-    >
-      <div className="absolute inset-0 opacity-30 [background:radial-gradient(circle_at_20%_30%,oklch(0.72_0.13_230/0.5),transparent_55%),radial-gradient(circle_at_80%_70%,oklch(0.5_0.15_260/0.4),transparent_55%)]" />
-      <div className="relative mx-auto grid max-w-7xl items-center gap-8 px-4 py-14 md:py-20 lg:grid-cols-2">
-        <div className="text-white">
-          <span className="inline-flex items-center gap-2 rounded-full border border-cyan/40 bg-cyan/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-cyan">
-            <Star className="h-3 w-3" /> Lançamento da semana
+    <section id="inicio" className="relative isolate overflow-hidden">
+      <img
+        src={heroSpa}
+        alt="Ambiente de spa relaxante da clínica de estética"
+        width={1600}
+        height={1104}
+        className="absolute inset-0 -z-20 h-full w-full object-cover"
+      />
+      <div
+        className="absolute inset-0 -z-10"
+        style={{ background: "var(--gradient-hero)" }}
+      />
+
+      <img
+        src={butterfly}
+        alt=""
+        loading="lazy"
+        width={700}
+        height={700}
+        className="animate-float pointer-events-none absolute right-[6%] top-24 -z-10 hidden h-24 w-24 opacity-80 md:block"
+      />
+      <img
+        src={butterfly}
+        alt=""
+        loading="lazy"
+        width={700}
+        height={700}
+        className="animate-float pointer-events-none absolute bottom-16 left-[8%] -z-10 hidden h-16 w-16 opacity-60 lg:block [animation-delay:1.5s]"
+      />
+
+      <div className="mx-auto max-w-6xl px-4 py-24 md:py-36">
+        <div className="max-w-2xl">
+          <span className="inline-flex items-center gap-2 rounded-full border border-background/30 bg-background/15 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-background backdrop-blur">
+            <Sparkles className="h-3.5 w-3.5" /> Estética & Bem Estar
           </span>
-          <h1 className="mt-5 text-4xl font-extrabold leading-tight md:text-6xl">
-            Performance que
-            <span className="block bg-gradient-to-r from-cyan to-cyan-bright bg-clip-text text-transparent">
-              acelera seus projetos.
-            </span>
+          <h1 className="mt-6 font-display text-4xl leading-[1.1] text-background md:text-6xl">
+            Realce a sua beleza natural e renove seu bem-estar.
           </h1>
-          <p className="mt-5 max-w-lg text-base text-white/70 md:text-lg">
-            Notebooks Gamers, ultrabooks corporativos e desktops montados com até{" "}
-            <strong className="text-white">35% OFF</strong> e frete grátis para todo o Brasil.
+          <p className="mt-6 max-w-xl text-base font-light leading-relaxed text-background/85 md:text-lg">
+            Tratamentos estéticos faciais e corporais personalizados com Jacqueline
+            Pereira.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
-            <button className="inline-flex items-center gap-2 rounded-full bg-cyan px-6 py-3 text-sm font-bold text-white shadow-[var(--shadow-glow)] transition hover:bg-cyan-bright">
-              Comprar agora <ChevronRight className="h-4 w-4" />
-            </button>
-            <button className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:bg-white/10">
-              Ver ofertas
-            </button>
+          <div className="mt-9 flex flex-wrap items-center gap-4">
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-purple px-7 py-4 text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:-translate-y-0.5 hover:bg-purple-deep md:text-base"
+            >
+              <MessageCircle className="h-5 w-5" /> Agendar Atendimento via WhatsApp
+            </a>
+            <a
+              href="#servicos"
+              className="inline-flex items-center gap-2 rounded-full border border-background/40 bg-background/10 px-7 py-4 text-sm font-semibold text-background backdrop-blur transition hover:bg-background/20"
+            >
+              Conhecer tratamentos
+            </a>
           </div>
-
-          <dl className="mt-10 grid max-w-md grid-cols-3 gap-6 border-t border-white/10 pt-6">
-            <Stat n="20+" l="Anos no mercado" />
-            <Stat n="50k+" l="Clientes ativos" />
-            <Stat n="4.9★" l="Avaliação" />
-          </dl>
-        </div>
-
-        <div className="relative">
-          <div className="absolute inset-0 mx-auto h-72 w-72 rounded-full bg-cyan/30 blur-3xl md:h-96 md:w-96" />
-          <img
-            src={heroLaptop}
-            alt="Notebook gamer em destaque"
-            width={1280}
-            height={960}
-            className="relative mx-auto drop-shadow-[0_30px_60px_rgba(41,162,213,0.35)]"
-          />
         </div>
       </div>
     </section>
   );
 }
 
-function Stat({ n, l }: { n: string; l: string }) {
-  return (
-    <div>
-      <dt className="text-2xl font-extrabold text-white md:text-3xl">{n}</dt>
-      <dd className="text-xs text-white/60">{l}</dd>
-    </div>
-  );
-}
+const services = [
+  {
+    icon: Droplets,
+    title: "Limpeza de Pele",
+    text: "Higienização profunda com extração suave, deixando a pele leve, uniforme e revitalizada.",
+  },
+  {
+    icon: HandHeart,
+    title: "Massagem Relaxante",
+    text: "Toque terapêutico que alivia tensões, reduz o estresse e devolve o equilíbrio ao corpo.",
+  },
+  {
+    icon: Waves,
+    title: "Drenagem Linfática",
+    text: "Técnica manual que reduz inchaço, melhora a circulação e define os contornos corporais.",
+  },
+  {
+    icon: Flower2,
+    title: "Tratamentos Faciais",
+    text: "Protocolos personalizados para acne, manchas e viço, com ativos de alta performance.",
+  },
+  {
+    icon: Gem,
+    title: "Rejuvenescimento",
+    text: "Estímulo de colágeno para suavizar linhas finas e recuperar a firmeza natural da pele.",
+  },
+  {
+    icon: Sparkles,
+    title: "Avaliação Personalizada",
+    text: "Análise individual da sua pele e objetivos para montar o plano de cuidados ideal.",
+  },
+];
 
-function Trust() {
-  const items = [
-    { icon: Truck, t: "Frete grátis", s: "Compras acima de R$ 499" },
-    { icon: CreditCard, t: "Até 12x sem juros", s: "Em todas as bandeiras" },
-    { icon: ShieldCheck, t: "Garantia estendida", s: "1 ano + 12 meses opcional" },
-    { icon: Headphones, t: "Suporte especialista", s: "Atendimento 7 dias" },
-  ];
+function Services() {
   return (
-    <section className="border-b border-border bg-gray-soft">
-      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-4 px-4 py-6 md:grid-cols-4">
-        {items.map(({ icon: Icon, t, s }) => (
-          <div key={t} className="flex items-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-full bg-cyan/10 text-cyan">
-              <Icon className="h-5 w-5" />
-            </div>
-            <div>
-              <p className="text-sm font-bold text-navy">{t}</p>
-              <p className="text-xs text-muted-foreground">{s}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function Categories() {
-  return (
-    <section className="mx-auto max-w-7xl px-4 py-14">
-      <header className="mb-8 flex items-end justify-between">
-        <div>
-          <h2 className="text-2xl font-extrabold text-navy md:text-3xl">
-            Navegue por categoria
+    <section id="servicos" className="relative overflow-hidden bg-beige py-24">
+      <img
+        src={butterfly}
+        alt=""
+        loading="lazy"
+        width={700}
+        height={700}
+        className="animate-float pointer-events-none absolute -right-6 top-10 h-28 w-28 opacity-20"
+      />
+      <div className="mx-auto max-w-6xl px-4">
+        <header className="mx-auto max-w-2xl text-center">
+          <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-purple">
+            O que oferecemos
+          </span>
+          <h2 className="mt-4 font-display text-3xl text-purple-deep md:text-4xl">
+            Cuidados pensados para a sua essência
           </h2>
-          <p className="mt-1 text-sm text-muted-foreground">
-            Encontre exatamente o que você precisa.
+          <p className="mt-4 text-sm font-light leading-relaxed text-muted-foreground md:text-base">
+            Cada protocolo é adaptado ao seu tipo de pele, à sua rotina e aos seus
+            objetivos — com acolhimento do início ao fim.
           </p>
-        </div>
-        <a href="#" className="hidden text-sm font-semibold text-cyan hover:underline sm:inline">
-          Ver todas →
-        </a>
-      </header>
-      <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-5">
-        {categories.map(({ name, icon: Icon, count }) => (
-          <a
-            key={name}
-            href="#"
-            className="group relative overflow-hidden rounded-2xl border border-border bg-card p-5 transition hover:-translate-y-1 hover:border-cyan hover:shadow-[var(--shadow-card)]"
-          >
-            <div className="grid h-12 w-12 place-items-center rounded-xl bg-navy text-cyan transition group-hover:bg-cyan group-hover:text-white">
-              <Icon className="h-6 w-6" />
-            </div>
-            <h3 className="mt-4 text-sm font-bold text-navy">{name}</h3>
-            <p className="text-xs text-muted-foreground">{count}</p>
-            <ChevronRight className="absolute right-4 top-5 h-4 w-4 text-muted-foreground transition group-hover:text-cyan" />
-          </a>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function ProductShelf() {
-  return (
-    <section className="bg-gray-soft">
-      <div className="mx-auto max-w-7xl px-4 py-14">
-        <header className="mb-8 flex items-end justify-between">
-          <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-cyan">
-              Mais vendidos
-            </span>
-            <h2 className="text-2xl font-extrabold text-navy md:text-3xl">
-              Ofertas em destaque
-            </h2>
-          </div>
-          <a href="#" className="text-sm font-semibold text-cyan hover:underline">
-            Ver todas →
-          </a>
         </header>
 
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {products.map((p) => (
-            <ProductCard key={p.name} product={p} />
+        <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {services.map(({ icon: Icon, title, text }) => (
+            <article
+              key={title}
+              className="group glass flex flex-col rounded-3xl p-7 shadow-[var(--shadow-card)] transition duration-300 hover:-translate-y-1.5"
+            >
+              <div className="grid h-14 w-14 place-items-center rounded-2xl bg-lilac text-purple transition group-hover:bg-purple group-hover:text-primary-foreground">
+                <Icon className="h-6 w-6" />
+              </div>
+              <h3 className="mt-6 font-display text-xl text-purple-deep">{title}</h3>
+              <p className="mt-3 flex-1 text-sm font-light leading-relaxed text-muted-foreground">
+                {text}
+              </p>
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-6 inline-flex items-center gap-1.5 text-sm font-bold text-purple transition group-hover:gap-3"
+              >
+                Saber mais <ChevronRight className="h-4 w-4" />
+              </a>
+            </article>
           ))}
         </div>
       </div>
@@ -435,87 +345,245 @@ function ProductShelf() {
   );
 }
 
-function ProductCard({ product }: { product: Product }) {
+function About() {
   return (
-    <article className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition hover:-translate-y-1 hover:shadow-[var(--shadow-card)]">
-      <div className="relative aspect-square overflow-hidden bg-gray-card">
-        {product.badge && (
-          <span className="absolute left-3 top-3 z-10 rounded-full bg-cyan px-2.5 py-1 text-[11px] font-bold text-white">
-            {product.badge}
-          </span>
-        )}
-        <button
-          aria-label="Favoritar"
-          className="absolute right-3 top-3 z-10 grid h-9 w-9 place-items-center rounded-full bg-white/90 text-navy backdrop-blur transition hover:bg-cyan hover:text-white"
-        >
-          <Heart className="h-4 w-4" />
-        </button>
-        <img
-          src={product.image}
-          alt={product.name}
-          loading="lazy"
-          width={800}
-          height={800}
-          className="h-full w-full object-contain p-4 transition duration-500 group-hover:scale-105"
-        />
-      </div>
-
-      <div className="flex flex-1 flex-col p-4">
-        <h3 className="line-clamp-2 min-h-[2.75rem] text-sm font-semibold text-navy">
-          {product.name}
-        </h3>
-
-        <ul className="mt-3 flex flex-wrap gap-1.5">
-          {product.tags.map((t) => (
-            <li
-              key={t}
-              className="rounded-md bg-navy/5 px-2 py-0.5 text-[11px] font-medium text-navy"
-            >
-              {t}
-            </li>
-          ))}
-        </ul>
-
-        <div className="mt-4">
-          <p className="text-xs text-muted-foreground line-through">{product.oldPrice}</p>
-          <p className="text-2xl font-extrabold text-navy">{product.price}</p>
-          <p className="text-xs text-muted-foreground">{product.installments}</p>
+    <section id="sobre" className="py-24">
+      <div className="mx-auto grid max-w-6xl items-center gap-12 px-4 lg:grid-cols-2">
+        <div className="relative">
+          <div className="absolute -left-4 -top-4 h-full w-full rounded-[2.5rem] bg-lilac/70" />
+          <img
+            src={jacquelinePhoto}
+            alt="Jacqueline Pereira, esteticista, em seu consultório"
+            loading="lazy"
+            width={1008}
+            height={1200}
+            className="relative rounded-[2.5rem] object-cover shadow-[var(--shadow-card)]"
+          />
+          <img
+            src={butterfly}
+            alt=""
+            loading="lazy"
+            width={700}
+            height={700}
+            className="animate-float pointer-events-none absolute -bottom-6 -right-2 h-24 w-24"
+          />
         </div>
 
-        <button className="mt-4 inline-flex items-center justify-center gap-2 rounded-full bg-cyan py-2.5 text-sm font-bold text-white transition hover:bg-cyan-bright">
-          <ShoppingCart className="h-4 w-4" /> Comprar
-        </button>
+        <div>
+          <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-purple">
+            Sobre a profissional
+          </span>
+          <h2 className="mt-4 font-display text-3xl leading-tight text-purple-deep md:text-4xl">
+            Um cuidado humanizado, do primeiro contato ao resultado
+          </h2>
+          <p className="mt-6 text-sm font-light leading-relaxed text-muted-foreground md:text-base">
+            Jacqueline Pereira é esteticista dedicada ao bem-estar integral de suas
+            pacientes. Com anos de experiência em estética facial e corporal, ela une
+            técnica apurada, produtos de alta qualidade e uma escuta atenta para
+            entender o que cada pessoa realmente precisa.
+          </p>
+          <p className="mt-4 text-sm font-light leading-relaxed text-muted-foreground md:text-base">
+            O atendimento é individual, em um ambiente tranquilo e acolhedor, com
+            protocolos ajustados a cada fase do tratamento — porque resultado
+            consistente nasce de acompanhamento próximo e verdadeiro.
+          </p>
+
+          <dl className="mt-10 grid grid-cols-3 gap-6 border-t border-border pt-6">
+            {[
+              { n: "+10", l: "Anos de experiência" },
+              { n: "+2mil", l: "Atendimentos" },
+              { n: "5,0★", l: "Avaliação Google" },
+            ].map((s) => (
+              <div key={s.l}>
+                <dt className="font-display text-2xl text-purple md:text-3xl">{s.n}</dt>
+                <dd className="mt-1 text-xs text-muted-foreground">{s.l}</dd>
+              </div>
+            ))}
+          </dl>
+
+          <a
+            href={WHATSAPP}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-9 inline-flex items-center gap-2 rounded-full bg-purple px-7 py-3.5 text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:-translate-y-0.5 hover:bg-purple-deep"
+          >
+            <MessageCircle className="h-4 w-4" /> Falar com a Jacqueline
+          </a>
+        </div>
       </div>
-    </article>
+    </section>
   );
 }
 
-function RecentlyViewed() {
+const testimonials = [
+  {
+    name: "Amanda Ribeiro",
+    text: "Ambiente maravilhoso e acolhedor. A Jacqueline explica cada etapa do procedimento e minha pele nunca esteve tão bonita. Recomendo de olhos fechados!",
+  },
+  {
+    name: "Camila Souza",
+    text: "Fiz drenagem linfática em um pacote e o resultado foi visível já nas primeiras sessões. Atendimento humano, pontual e muito profissional.",
+  },
+  {
+    name: "Patrícia Lima",
+    text: "A massagem relaxante é simplesmente outro nível. Saio de lá renovada. O espaço é limpo, cheiroso e transmite muita paz.",
+  },
+  {
+    name: "Renata Alves",
+    text: "Minha limpeza de pele favorita! Cuidado com cada detalhe e um pós-atendimento atencioso. Virei cliente fiel.",
+  },
+];
+
+function Testimonials() {
+  const [index, setIndex] = useState(0);
+  const total = testimonials.length;
+  const go = (dir: number) => setIndex((i) => (i + dir + total) % total);
+
   return (
-    <section className="mx-auto max-w-7xl px-4 py-14">
-      <h2 className="text-xl font-extrabold text-navy">Vistos recentemente</h2>
-      <p className="mt-1 text-sm text-muted-foreground">
-        Continue de onde parou — selecionamos para você.
-      </p>
-      <div className="mt-6 grid grid-cols-2 gap-4 md:grid-cols-4">
-        {products.slice(0, 4).map((p) => (
-          <a
-            key={p.name}
-            href="#"
-            className="flex items-center gap-3 rounded-xl border border-border bg-card p-3 transition hover:border-cyan"
-          >
-            <img
-              src={p.image}
-              alt=""
-              loading="lazy"
-              className="h-16 w-16 shrink-0 rounded-lg bg-gray-card object-contain p-1"
-            />
-            <div className="min-w-0">
-              <p className="line-clamp-2 text-xs font-semibold text-navy">{p.name}</p>
-              <p className="mt-1 text-sm font-extrabold text-cyan">{p.price}</p>
+    <section className="relative overflow-hidden bg-nude/60 py-24">
+      <div className="mx-auto max-w-4xl px-4 text-center">
+        <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-purple">
+          Depoimentos
+        </span>
+        <h2 className="mt-4 font-display text-3xl text-purple-deep md:text-4xl">
+          Quem cuida com a gente, recomenda
+        </h2>
+
+        <div className="mt-12 glass rounded-[2rem] p-8 shadow-[var(--shadow-card)] md:p-12">
+          <div className="flex justify-center gap-1 text-purple">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <Star key={i} className="h-5 w-5 fill-current" />
+            ))}
+          </div>
+          <blockquote className="mt-6 font-display text-lg leading-relaxed text-foreground md:text-2xl">
+            “{testimonials[index].text}”
+          </blockquote>
+          <p className="mt-6 text-sm font-bold uppercase tracking-[0.18em] text-purple">
+            {testimonials[index].name}
+          </p>
+          <p className="mt-1 text-xs text-muted-foreground">Avaliação no Google</p>
+
+          <div className="mt-8 flex items-center justify-center gap-4">
+            <button
+              aria-label="Depoimento anterior"
+              onClick={() => go(-1)}
+              className="grid h-11 w-11 place-items-center rounded-full border border-purple/30 text-purple transition hover:bg-purple hover:text-primary-foreground"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <div className="flex gap-2">
+              {testimonials.map((t, i) => (
+                <button
+                  key={t.name}
+                  aria-label={`Ver depoimento de ${t.name}`}
+                  onClick={() => setIndex(i)}
+                  className={`h-2 rounded-full transition-all ${
+                    i === index ? "w-6 bg-purple" : "w-2 bg-purple/30"
+                  }`}
+                />
+              ))}
             </div>
-          </a>
-        ))}
+            <button
+              aria-label="Próximo depoimento"
+              onClick={() => go(1)}
+              className="grid h-11 w-11 place-items-center rounded-full border border-purple/30 text-purple transition hover:bg-purple hover:text-primary-foreground"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function LocationContact() {
+  return (
+    <section id="contato" className="py-24">
+      <div className="mx-auto max-w-6xl px-4">
+        <header className="mx-auto max-w-2xl text-center">
+          <span className="text-[11px] font-bold uppercase tracking-[0.28em] text-purple">
+            Localização e contato
+          </span>
+          <h2 className="mt-4 font-display text-3xl text-purple-deep md:text-4xl">
+            Venha nos visitar
+          </h2>
+        </header>
+
+        <div className="mt-12 grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+          <div className="overflow-hidden rounded-3xl border border-border shadow-[var(--shadow-card)]">
+            <iframe
+              title="Mapa da clínica Jacqueline Pereira Estética & Bem Estar"
+              src={MAPS_EMBED}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="h-[380px] w-full lg:h-full"
+            />
+          </div>
+
+          <div className="glass rounded-3xl p-8 shadow-[var(--shadow-card)]">
+            <ul className="space-y-6">
+              <li className="flex gap-4">
+                <MapPin className="mt-0.5 h-5 w-5 shrink-0 text-purple" />
+                <div className="min-w-0">
+                  <p className="font-display text-lg text-purple-deep">Endereço</p>
+                  <p className="mt-1 text-sm font-light text-muted-foreground">
+                    Jacqueline Pereira Estética & Bem Estar — Guarulhos, São Paulo.
+                  </p>
+                  <a
+                    href={MAPS_LINK}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-flex items-center gap-1 text-sm font-bold text-purple hover:underline"
+                  >
+                    Ver rota no Google Maps <ChevronRight className="h-4 w-4" />
+                  </a>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <Clock className="mt-0.5 h-5 w-5 shrink-0 text-purple" />
+                <div>
+                  <p className="font-display text-lg text-purple-deep">
+                    Horário de funcionamento
+                  </p>
+                  <p className="mt-1 text-sm font-light text-muted-foreground">
+                    Segunda a sexta: 9h às 19h
+                    <br />
+                    Sábado: 9h às 15h
+                  </p>
+                </div>
+              </li>
+              <li className="flex gap-4">
+                <Phone className="mt-0.5 h-5 w-5 shrink-0 text-purple" />
+                <div>
+                  <p className="font-display text-lg text-purple-deep">Atendimento</p>
+                  <p className="mt-1 text-sm font-light text-muted-foreground">
+                    Agendamentos via WhatsApp
+                  </p>
+                </div>
+              </li>
+            </ul>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full bg-purple px-6 py-3 text-sm font-bold text-primary-foreground transition hover:bg-purple-deep"
+              >
+                <MessageCircle className="h-4 w-4" /> WhatsApp
+              </a>
+              <a
+                href={INSTAGRAM}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-purple/30 px-6 py-3 text-sm font-bold text-purple transition hover:bg-lilac"
+              >
+                <Instagram className="h-4 w-4" /> Instagram
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -523,71 +591,64 @@ function RecentlyViewed() {
 
 function Footer() {
   return (
-    <footer className="bg-navy-deep text-white/80">
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 md:grid-cols-4">
+    <footer className="bg-purple-deep text-background/75">
+      <div className="mx-auto grid max-w-6xl gap-10 px-4 py-14 md:grid-cols-3">
         <div>
-          <div className="flex items-center gap-2">
-            <div className="grid h-10 w-10 place-items-center rounded-lg bg-gradient-to-br from-cyan to-cyan-bright">
-              <Cpu className="h-5 w-5 text-white" />
-            </div>
-            <span className="text-xl font-extrabold text-white">
-              4M&C <span className="text-cyan">INFORMATICA</span>
-            </span>
-          </div>
-          <p className="mt-4 text-sm">
-            Tecnologia para quem precisa de performance. Notebooks, desktops e hardware
-            com garantia e o melhor atendimento.
+          <Logo light />
+          <p className="mt-5 max-w-xs text-sm font-light leading-relaxed">
+            Estética facial e corporal com cuidado humanizado, em um ambiente pensado
+            para o seu relaxamento.
           </p>
         </div>
 
-        <FooterCol
-          title="Institucional"
-          links={["Sobre nós", "Trabalhe conosco", "Política de privacidade", "Termos de uso"]}
-        />
-        <FooterCol
-          title="Ajuda"
-          links={["FAQ", "Trocas e devoluções", "Garantia", "Rastrear pedido"]}
-        />
+        <div>
+          <h3 className="text-xs font-bold uppercase tracking-[0.24em] text-background">
+            Links úteis
+          </h3>
+          <ul className="mt-5 space-y-2 text-sm font-light">
+            {navItems.map((i) => (
+              <li key={i.href}>
+                <a href={i.href} className="transition hover:text-background">
+                  {i.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
 
         <div>
-          <h4 className="text-sm font-bold uppercase tracking-wider text-white">Contato</h4>
-          <ul className="mt-4 space-y-2 text-sm">
-            <li>📞 (11) 4000-1234</li>
-            <li>✉️ contato@4emecinformatica.com.br</li>
-            <li>🕒 Seg a Sex · 9h às 18h</li>
-          </ul>
-
-          <h4 className="mt-6 text-xs font-bold uppercase tracking-wider text-white/70">
-            Pagamento
-          </h4>
-          <div className="mt-3 flex flex-wrap gap-2">
-            {["VISA", "MASTER", "ELO", "AMEX", "PIX", "BOLETO"].map((m) => (
-              <span
-                key={m}
-                className="rounded-md bg-white/10 px-2 py-1 text-[10px] font-bold tracking-wider"
-              >
-                {m}
-              </span>
-            ))}
-          </div>
-
-          <h4 className="mt-6 text-xs font-bold uppercase tracking-wider text-white/70">
-            Segurança
-          </h4>
-          <div className="mt-3 flex gap-2">
-            <span className="inline-flex items-center gap-1 rounded-md bg-cyan/15 px-2 py-1 text-[10px] font-bold text-cyan">
-              <ShieldCheck className="h-3 w-3" /> SSL 256-bit
-            </span>
-            <span className="rounded-md bg-white/10 px-2 py-1 text-[10px] font-bold">
-              Site Blindado
-            </span>
+          <h3 className="text-xs font-bold uppercase tracking-[0.24em] text-background">
+            Redes sociais
+          </h3>
+          <div className="mt-5 flex gap-3">
+            <a
+              href={INSTAGRAM}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="grid h-11 w-11 place-items-center rounded-full border border-background/20 transition hover:bg-background/10"
+            >
+              <Instagram className="h-5 w-5" />
+            </a>
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className="grid h-11 w-11 place-items-center rounded-full border border-background/20 transition hover:bg-background/10"
+            >
+              <MessageCircle className="h-5 w-5" />
+            </a>
           </div>
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-white/60 sm:flex-row">
-          <p>© {new Date().getFullYear()} 4M&C INFORMATICA Ltda. CNPJ 00.000.000/0001-00</p>
+      <div className="border-t border-background/10">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-5 text-xs text-background/55 sm:flex-row">
+          <p>
+            © {new Date().getFullYear()} Jacqueline Pereira Estética & Bem Estar · CNPJ
+            00.000.000/0001-00
+          </p>
           <p>Todos os direitos reservados.</p>
         </div>
       </div>
@@ -595,31 +656,17 @@ function Footer() {
   );
 }
 
-function FooterCol({ title, links }: { title: string; links: string[] }) {
+function WhatsAppFab() {
   return (
-    <div>
-      <h4 className="text-sm font-bold uppercase tracking-wider text-white">{title}</h4>
-      <ul className="mt-4 space-y-2 text-sm">
-        {links.map((l) => (
-          <li key={l}>
-            <a href="#" className="transition hover:text-cyan">
-              {l}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
-
-function SupportFab() {
-  return (
-    <button
-      aria-label="Abrir chat de suporte"
-      className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-cyan px-5 py-3 text-sm font-bold text-white shadow-[var(--shadow-glow)] transition hover:bg-cyan-bright"
+    <a
+      href={WHATSAPP}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Agendar atendimento pelo WhatsApp"
+      className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-purple px-5 py-4 text-sm font-bold text-primary-foreground shadow-[var(--shadow-glow)] transition hover:-translate-y-0.5 hover:bg-purple-deep"
     >
       <MessageCircle className="h-5 w-5" />
-      <span className="hidden sm:inline">Fale com um especialista</span>
-    </button>
+      <span className="hidden sm:inline">Agendar no WhatsApp</span>
+    </a>
   );
 }
