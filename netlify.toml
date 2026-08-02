@@ -1,6 +1,7 @@
 [build]
-  command = "npm run build"
+  command = "bun run build"
   publish = ".output/public"
 
 [build.environment]
+  BUN_VERSION = "1.1.0"
   NODE_VERSION = "20"
